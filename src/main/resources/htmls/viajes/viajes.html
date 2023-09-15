@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:href="@{/assets/css/style.css}" rel="stylesheet">
+    <title>Lista Transportistas</title>
+</head>
+<body>
+<header id="header" class="header fixed-top d-flex align-items-center" style="background-color: #090B21">
+
+    <div class="d-flex align-items-center justify-content-between">
+        <a th:href="@{/travelcan/}" class="logo d-flex align-items-center">
+            <img th:src="@{/htmls/assets/travel_can_logo.png}" alt="">
+        </a>
+        <i class="bi bi-list toggle-sidebar-btn" style="color: white"></i>
+    </div><!-- End Logo -->
+
+    <nav class="header-nav ms-auto">
+        <ul class="d-flex align-items-center">
+
+            <li class="nav-item dropdown pe-3">
+
+                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                    <img th:src="@{/htmls/assets/travel_can_logo.png}" alt="Profile" class="rounded-circle">
+                    <span class="d-none d-md-block dropdown-toggle ps-2" style="color:white">Anais Salvador</span>
+                </a><!-- End Profile Iamge Icon -->
+
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                    <li class="dropdown-header">
+                        <h6>Anais Salvador</h6>
+                        <span>Lab 5</span>
+                    </li>
+                </ul><!-- End Profile Dropdown Items -->
+            </li><!-- End Profile Nav -->
+
+        </ul>
+    </nav><!-- End Icons Navigation -->
+
+</header><!-- End Header -->
+
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-bar-chart"></i><span>Servicios</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a th:href="@{/viajes/viajes}">
+                        <i class="bi bi-circle"></i><span>Viajes</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/mascotas/mascotas}">
+                        <i class="bi bi-circle"></i><span>Mascotas</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/lugares/lugaresd}">
+                        <i class="bi bi-circle"></i><span>Lugares</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Charts Nav -->
+    </ul>
+</aside><!-- End Sidebar-->
+<main>
+    <div class="container px-4 py-5">
+        <h1 class="pb-2 border-bottom">Lista de viajes programados</h1><br>
+        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+            <a type="button" class="btn btn-danger" th:href="@{/nuevoViaje}">Nuevo Viaje</a>
+            <a type="button" class="btn btn-success" th:href="@{/nuevaMascota}">Nueva Mascota</a>
+        </div>
+        <br>
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Punto de recojo</th>
+                <th>Cant.personas</th>
+                <th>Cant.Perros</th>
+                <th>Sel.Personas</th>
+                <th>Sel.Lugares</th>
+                <th></th>
+                <th></th>
+
+            </tr>
+            <tr th:each="viaje, info : ${viajeList}">
+                <td th:text="${info.index + 1}"></td>
+                <td th:text="${viaje.puntoRecojo}"></td>
+                <td th:text="${viaje.cantPersonas}"></td>
+                <td th:text="${viaje.cantPerros}"> </td>
+                <td th:text="${viaje.personaIdpersona}"> </td>
+                <td th:text="${viaje.lugaresIdlugares}"> </td>
+                <td> <a class="btn btn-primary">Editar</a></td>
+                <td> <a class="btn btn-danger">Borrar</a></td>
+            </tr>
+        </table>
+    </div>
+</main>
+<!-- Template Main JS File -->
+<script th:src="@{/assets/js/main.js}"></script>
+
+</body>
+</html>

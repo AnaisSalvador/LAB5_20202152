@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:href="@{/assets/css/style.css}" rel="stylesheet">
+    <title>Nuevo Mascota</title>
+</head>
+<body>
+<main>
+    <div class="container px-4 py-5">
+        <h1 class="pb-2 mb-3 border-bottom">Nuevo Transportista</h1>
+        <form method="post" th:action="@{/viajes/save}" class="mt-2"> <!--para guardar -->
+            <div class="mb-3"> <!--COMBO BOX-->
+                <label for="viaje" class="form-label">Punto de Recojo</label>
+                <select class="form-select" name="viaje" id="viaje">
+
+                    <option th:each="viaje:${viajeLista}" th:text="${viaje.puntoRecojo}"   th:value="${viaje.id}">
+                        Open this menu </option>
+                </select>
+            </div> <!--End COMBO BOX-->
+            <div class="mb-3">
+                <label for="cantPersonas" class="form-label">Cantidad de personas</label>
+                <input name="cantPersonas" type="text" class="form-control" id="cantPersonas">
+            </div>
+            <div class="mb-3">
+                <label for="cantPerros" class="form-label">Cantidad de perros</label>
+                <input name="cantPerros" type="text" class="form-control" id="cantPerros">
+            </div>
+            <div class="mb-3">
+                <label for="SelecPersonas" class="form-label">Selector de personas</label>
+                <input name="SelecPersonas" type="text" class="form-control" id="SelecPersonas">
+            </div>
+            <div class="mb-3">
+                <label for="SelecLugares" class="form-label">Selector de Lugares</label>
+                <input name="SelecLugares" type="text" class="form-control" id="SelecLugares">
+            </div>
+            <a th:href="@{'/shipper/list'}" class="btn btn-danger">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+    </div>
+</main>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
